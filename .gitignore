@@ -1,11 +1,3 @@
-
-### c:\Users\mment\OneDrive\Desktop\Madlen Case Study\.gitignore
-
-Create a consolidated `.gitignore` file at the root of the project.
-
-````gitignore
-# filepath: c:\Users\mment\OneDrive\Desktop\Madlen Case Study\.gitignore
-
 # Python
 __pycache__/
 *.py[cod]
@@ -45,10 +37,15 @@ yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 package-lock.json
+yarn.lock
 
 # React / Build
 frontend/build/
 frontend/dist/
+frontend/.next/
+frontend/out/
+build/
+dist/
 .DS_Store
 .env.local
 .env.development.local
@@ -79,9 +76,12 @@ logs/
 # Testing
 coverage/
 .nyc_output/
+frontend/coverage/
 
 # Misc
 .cache/
 .parcel-cache/
 .next/
 out/
+*.tsbuildinfo
+.eslintcache
