@@ -1,46 +1,41 @@
-# Getting Started with Create React App
+# Madlen Chat Application
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A local web-based chat interface that serves as a gateway to various AI models via OpenRouter. This project demonstrates a full-stack integration using modern technologies, real-time API interactions, and distributed tracing.
 
-## Available Scripts
+## 🚀 Project Overview
 
-In the project directory, you can run:
+This application allows users to:
+- **Select AI Models**: Choose from available free models provided by OpenRouter.
+- **Chat**: Send messages and receive responses in a real-time interface.
+- **View History**: See the conversation flow within the current session.
+- **Monitor**: Track system performance and API calls via OpenTelemetry and Jaeger.
 
-### `npm start`
+## 🛠️ Technical Choices & Rationale
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+### Backend: **FastAPI (Python)**
+- **Why:** Chosen for its high performance and native support for asynchronous programming (`async/await`). This is crucial for handling external API calls (OpenRouter) without blocking the server. It also automatically generates OpenAPI documentation.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+### Frontend: **React + TypeScript**
+- **Why:** React provides a responsive, component-based architecture perfect for chat UIs. TypeScript was selected to ensure type safety, reducing runtime errors and improving code maintainability compared to standard JavaScript.
 
-### `npm test`
+### Telemetry: **OpenTelemetry + Jaeger**
+- **Why:** To meet the observability requirement, OpenTelemetry is used to instrument the application. Jaeger (running via Docker) was chosen as the backend to visualize these traces because it is the industry standard for distributed tracing and integrates seamlessly with OpenTelemetry.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+---
 
-### `npm run build`
+## 📋 Prerequisites
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Before running the project, ensure you have the following installed:
+- **Python 3.8+**
+- **Node.js & npm**
+- **Docker Desktop** (Must be running for Jaeger)
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## ⚙️ Installation & Setup
 
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+### 1. Clone the Repository
+```bash
+git clone <repository_url>
+cd Madlen\ Case\ Study
+```
