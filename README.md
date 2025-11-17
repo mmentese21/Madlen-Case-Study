@@ -84,15 +84,6 @@ docker-compose up -d
 
 ## Running the Application
 
-### Option A: Automaded Scripts
-
-Use the included scripts to launch all services in separate windows.
-
-Windows: Double-click run_project.bat.
-
-Mac/Linux: Run ./run_project.sh.
-
-### Option B: Manual Start
 
 If you prefer running services manually, open two separate terminals:
 
@@ -103,8 +94,9 @@ Terminal 1: Backend
 cd backend
 # Ensure venv is active
 uvicorn app.main:app --reload
-Server runs at: http://localhost:8000
 ```
+Server runs at: http://localhost:8000
+
 
 Terminal 2: Frontend
 
