@@ -39,3 +39,78 @@ Before running the project, ensure you have the following installed:
 git clone <repository_url>
 cd Madlen\ Case\ Study
 ```
+
+### 2. Backend Setup
+
+Navigate to the backend folder and set up the Python environment.
+
+```bash
+cd backend
+
+# Create virtual environment
+python -m venv venv
+
+# Activate virtual environment
+# Windows:
+venv\Scripts\activate
+# Mac/Linux:
+source venv/bin/activate
+
+# Install dependencies
+pip install -r requirements.txt
+```
+🔑 API Key Configuration: Create a file named .env inside the backend/ directory to securely manage your key.
+
+OPENROUTER_API_KEY="your_openrouter_key_here"
+
+### 3. Frontend Setup
+
+Navigate to the frontend folder and install Node dependencies.
+
+```bash
+cd ../frontend
+npm install
+```
+
+### 4. Telemetry Infrastucture
+
+Start the Jaeger container using Docker Compose. Ensure Docker Desktop is running first.
+
+```bash
+cd ..
+docker-compose up -d
+```
+
+
+## Running the Application
+
+### Option A: Automaded Scripts
+
+Use the included scripts to launch all services in separate windows.
+
+Windows: Double-click run_project.bat.
+
+Mac/Linux: Run ./run_project.sh.
+
+### Option B: Manual Start
+
+If you prefer running services manually, open two separate terminals:
+
+Terminal 1: Backend
+
+
+```bash
+cd backend
+# Ensure venv is active
+uvicorn app.main:app --reload
+Server runs at: http://localhost:8000
+```
+
+Terminal 2: Frontend
+
+```bash
+cd frontend
+npm start
+```
+
+Client runs at: http://localhost:3000

@@ -1,14 +1,62 @@
 #!/bin/bash
 
-echo "=========================================="
-echo "  Starting Madlen Chat Application"
-echo "=========================================="
+echo "==================================================="
+echo "  Madlen Chat Application - Auto Setup & Run"
+echo "==================================================="
 
-# 1. Start Jaeger
-echo "[1/3] Starting Jaeger..."
+# --- STEP 1: DOCKER & JAEGER ---
+echo ""
+echo "[1/4] Checking Docker..."
+if ! docker info > /dev/null 2>&1; then
+  echo "Error: Docker is NOT running. Please start Docker Desktop."
+  exit 1
+fi
+
+echo "Starting Jaeger container..."
 docker-compose up -d
 
-# Function to open a new terminal window
+# --- STEP 2: BACKEND SETUP ---
+echo ""
+echo "[2/4] Setting up Backend..."
+cd backend
+
+if [ ! -d "venv" ]; then
+  echo "   - Creating Python virtual environment..."
+  python3 -m venv venv
+fi
+
+echo "   - Activating virtual environment..."
+source venv/bin/activate
+
+echo "   - Installing dependencies..."
+pip install -r requirements.txt
+
+if [ ! -f ".env" ]; then
+  echo "OPENROUTER_API_KEY='replace_with_your_key'" > .env
+  echo "   - Created template .env file. Please add your API Key!"
+fi
+
+cd ..
+
+# --- STEP 3: FRONTEND SETUP ---
+echo ""
+echo "[3/4] Setting up Frontend..."
+cd frontend
+
+if [ ! -d "node_modules" ]; then
+  echo "   - Installing Node dependencies (this may take a minute)..."
+  npm install
+else
+  echo "   - Node modules found, skipping install."
+fi
+
+cd ..
+
+# --- STEP 4: LAUNCH SERVICES ---
+echo ""
+echo "[4/4] Launching Services..."
+
+# Function to open terminal windows based on OS
 open_terminal() {
     local title="$1"
     local cmd="$2"
@@ -20,21 +68,17 @@ open_terminal() {
         # Linux (GNOME)
         gnome-terminal --title="$title" -- bash -c "cd $(pwd); $cmd; exec bash"
     else
-        # Fallback: Run in background
+        # Fallback
         echo "No external terminal found. Running $title in background..."
         eval "$cmd &"
     fi
 }
 
-# 2. Start Backend
-echo "[2/3] Launching Backend..."
-# Note: Assumes 'source venv/bin/activate' works relative to backend folder
+# Start Backend
 open_terminal "Madlen Backend" "cd backend && source venv/bin/activate && uvicorn app.main:app --reload"
 
-# 3. Start Frontend
-echo "[3/3] Launching Frontend..."
+# Start Frontend
 open_terminal "Madlen Frontend" "cd frontend && npm start"
 
-echo ""
-echo "Services are starting..."
-echo "Jaeger UI: http://localhost:16686"
+echo "Services are launching..."
+echo "Jaeger UI available at http://localhost:16686"
