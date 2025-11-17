@@ -36,7 +36,7 @@ Before running the project, ensure you have the following installed:
 
 ### 1. Clone the Repository
 ```bash
-git clone <repository_url>
+git clone https://github.com/mmentese21/Madlen-Case-Study
 cd Madlen\ Case\ Study
 ```
 
